@@ -13,31 +13,6 @@
 				<h2> Gallery </h2>
 
 				<div class="gallery-container">
-					<?php
-					include_once "db_connect.php";
-
-					$sql = "select *  from gallery order by orderGallery desc";
-					$stmt = mysqli_stmt_init($conn);
-
-					if (!mysqli_stmt_prepare($stmt, $sql)){
-
-						echo "SQL statement failed";
-					}else{
-
-						mysqli_stmt_execute($stmt);
-						$result = mysqli_stmt_get_result($stmt);
-
-						while ($row = msqli_fetch_ass0c($result)){
-							echo 
-							'<a href="#">
-								<div style = "background-image:url(image/gallery'.$row["imageFullNameGallery"].');"></div>
-								<h3>'.$row["titleGallery"].'</h3>
-								<p>'.$row["descGallery"].'</p>
-							</a>';
-						}
-					}
-				
-					?>
 				</div>
 					<?php
 						if(isset($_SESSION['username']))

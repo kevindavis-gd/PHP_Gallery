@@ -2,12 +2,8 @@
 
 $serverName = "localhost";
 $username = "root";
-$password = "";
-$dbname = "gallery"
+$password = "root";
+$dbname = "gallery";
 
 $conn = mysqli_connect($serverName,$username,$password,$dbname);
-
-
-
-
 ?>
