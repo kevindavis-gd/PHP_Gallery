@@ -13,35 +13,31 @@
 				<h2> Gallery </h2>
 
 				<div class="gallery-container">
-					<a href="#">
-						<div></div>
-						<h3>This is a title</h3>
-						<p>This is a paragraph</p>
-					</a>
+					<?php
+					include_once "db_connect.php";
 
-					<a href="#">
-						<div></div>
-						<h3>This is a title</h3>
-						<p>This is a paragraph</p>
-					</a>
+					$sql = "select *  from gallery order by orderGallery desc";
+					$stmt = mysqli_stmt_init($conn);
 
-					<a href="#">
-						<div></div>
-						<h3>This is a title</h3>
-						<p>This is a paragraph</p>
-					</a>
+					if (!mysqli_stmt_prepare($stmt, $sql)){
 
-					<a href="#">
-						<div></div>
-						<h3>This is a title</h3>
-						<p>This is a paragraph</p>
-					</a>
+						echo "SQL statement failed";
+					}else{
 
-					<a href="#">
-						<div></div>
-						<h3>This is a title</h3>
-						<p>This is a paragraph</p>
-					</a>
+						mysqli_stmt_execute($stmt);
+						$result = mysqli_stmt_get_result($stmt);
+
+						while ($row = msqli_fetch_ass0c($result)){
+							echo 
+							'<a href="#">
+								<div style = "background-image:url(image/gallery'.$row["imageFullNameGallery"].');"></div>
+								<h3>'.$row["titleGallery"].'</h3>
+								<p>'.$row["descGallery"].'</p>
+							</a>';
+						}
+					}
+				
+					?>
 				</div>
 					<?php
 						if(isset($_SESSION['username']))
@@ -49,7 +45,7 @@
 							echo
 							 '<div class="gallery-upload"> 
 
-								<form action="upload.php" method="" enctype="multipart/form-data">
+								<form action="upload.php" method="post" enctype="multipart/form-data">
 									
 									<input type="text" name="filename" placeholder="File Name">
 									</br>
@@ -102,7 +98,6 @@
 		width: 235px;
 		height: 235px;
 		margin:5px;
-		background-color:red;
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
