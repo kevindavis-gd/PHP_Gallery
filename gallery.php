@@ -1,3 +1,6 @@
+<?php
+	$_SESSION['username'] = "Admin";
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,38 +43,37 @@
 						<p>This is a paragraph</p>
 					</a>
 				</div>
-				<div class="gallery-upload"> 
+					<?php
+						if(isset($_SESSION['username']))
+						{
+							echo
+							 '<div class="gallery-upload"> 
 
-				<form action="includes/galary-upload-include.php" method="" enctype="multipart/form-data">
-					
-					<input type="text" name="filename" placeholdeer="File Name">
-					<input type="text" name="filetitle" placeholdeer="Image title">
-					<input type="text" name="filedesc" placeholdeer="Image description">
-					<input type="file" name="file">
-
-					<button type="submit" name="submit">Upload</button>
-
-				</form>
-
-
-
-
-
-
-
-
-
-
-
+								<form action="upload.php" method="" enctype="multipart/form-data">
+									
+									<input type="text" name="filename" placeholder="File Name">
+									</br>
+									<input type="text" name="filetitle" placeholder="Image title">
+									</br>
+									<input type="text" name="filedesc" placeholder="Image description">
+									</br>
+									<input type="file" name="file">
+									</br>
+									</br>
+									<button type="submit" name="submit">Upload</button>
+								</form>
+							</div>';
+						}
+					?>
+				</div>
 			</div>
-
 		</section>
-
-
 	</main>
 
 
 <style type="text/css">
+
+
 	.gallery-links h2{
 
 		font-family: Catamaran;
@@ -79,6 +81,7 @@
 		font-weight:600;
 		color:#111;
 		text-transform: uppercase;
+		
 	}
 
 	.gallery-container{

@@ -1,0 +1,8 @@
+CREATE TABLE gallery (
+    idGallery int(11) AUTO_INCREMENT primary KEY not null,
+    titleGallery longtext not null,
+    descGallery longtext not null,
+    imgFullGalleery Longtext not null,
+    orderGallery longtext not null
+    
+    );
