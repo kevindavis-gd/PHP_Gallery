@@ -13,6 +13,33 @@
 				<h2> Gallery </h2>
 
 				<div class="gallery-container">
+					<?php
+					include_once "db_connect.php";
+
+					$sql = "select *  from gallery order by orderGallery desc";
+					$stmt = mysqli_stmt_init($conn);
+
+					if (!mysqli_stmt_prepare($stmt, $sql)){
+
+						echo "SQL statement failed 0 ";
+					}else{
+
+						mysqli_stmt_execute($stmt);
+						$result = mysqli_stmt_get_result($stmt);
+
+						while ($row = mysqli_fetch_assoc($result))
+						{
+							echo 
+							'<a href="#">
+								<div style = "background-image:url(image/Gallery/'. $row["imgFullGalleery"].');">
+								</div>
+								<h3>'.$row["titleGallery"].'</h3>
+								<p>'.$row["descGallery"].'</p>
+							</a>';
+						}
+					}
+				
+					?>
 				</div>
 					<?php
 						if(isset($_SESSION['username']))
@@ -65,7 +92,7 @@
 	}
 
 	.gallery-container a:hover{
-		opacity:0.1;
+		opacity:0.5;
 	}
 
 	.gallery-container a div{
